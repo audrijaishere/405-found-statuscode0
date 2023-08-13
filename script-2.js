@@ -1,4 +1,6 @@
 const video = document.getElementById('video');
+// neural netowrks operate to get input from thr hardware
+
 Promise.all([
   faceapi.nets.ssdMobilenetv1.loadFromUri('/models'),
   faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
@@ -19,6 +21,7 @@ function startWebcam() {
     });
 }
 function login() {
+  //logging in 
   Promise.all([
     faceapi.nets.ssdMobilenetv1.loadFromUri('/models'),
     faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
@@ -38,7 +41,7 @@ function login() {
         console.error(error);
       });
   }
-
+//matching the useer with database
   function getLabeledFaceDescriptions() {
     const labels = ['audrija', 'antara', 'Data', 'sumita'];
     return Promise.all(
@@ -56,7 +59,7 @@ function login() {
       })
     );
   }
-
+//canvas creation
   video.addEventListener('play', async () => {
     const labeledFaceDescriptors = await getLabeledFaceDescriptions();
     const faceMatcher = new faceapi.FaceMatcher(labeledFaceDescriptors);
