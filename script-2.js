@@ -6,6 +6,7 @@ Promise.all([
   faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
   faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
 ]).then(startWebcam);
+//webcam opens up once all the neural networks have loaded
 
 function startWebcam() {
   navigator.mediaDevices
@@ -41,7 +42,7 @@ function login() {
         console.error(error);
       });
   }
-//matching the useer with database
+//performing face detection 
   function getLabeledFaceDescriptions() {
     const labels = ['audrija', 'antara', 'Data', 'sumita'];
     return Promise.all(
